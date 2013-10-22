@@ -7,40 +7,35 @@
 		$upButton = $('#upButton'),
 		$downButton = $('#downButton'),
 		$powerButton = $('#powerButton'),
-		$toggleSlider = $('#toggleSlider'),
+		//$toggleSlider = $('#toggleSlider'),
 		scale = scaleSlider.value,
-		unit = toggleSlider.value,
+		//unit = toggleSlider.value,
 		scale = 0,
 		MINIMUM_SCALE = 0,
-		text = 0,
-		MAXIMUM_SCALE = 1000;
-
-	$(toggleSlider).change(function(e){
-		unit = e.target.value;
-		//drawText(text);
-		toggleSlider.value = 1 ? console.log("one") : console.log("two");
-	    
-	});	
+		text,
+		MAXIMUM_SCALE = 1000,
+		val = 'no',
+		minutes = 60,
+		hour = (text/minutes).toFixed(2);
 
 	function defineTimeUnit (unit) {
-		//if (unit < 1) {console.log("unit is 1 " + unit);}
 		console.log(unit)
-		
 	}
 
 
 	function drawText(value) { 
-
-	   text = parseFloat(value);
-	   hours = Math.ceil(text/60);
-	   minutes = text;
-	   defineTimeUnit(unit);
-
-	   scaleOutput.innerText = text;
-	   //else {console.log("unit in drawText is zero");}
-	   //scaleOutput.innerText = text + " hours";
-
-	   //else {scaleOutput.innerText = text/60 + "hours"; }
+		var time = text,
+			hour = (text/minutes).toFixed(2);
+		val = $('#flip-3').val();
+	    if(val=== "yes"){
+	    	time = hour;
+	    	scaleOutput.innerText = (time + " hours");
+	    }
+	    else {
+	    	scaleOutput.innerText = (time + " minutes");
+	    }
+	    console.log(val);
+	   // scaleOutput.innerText = text;
 	}	
 
 	$(scaleSlider).change(function(e){
@@ -48,24 +43,37 @@
 	    slideAdjust(text);
 	});
 
+	$('#flip-3').change(function() {
+	self = $(this);
+	var val = 'no',
+		time = text,
+		minutes = 60,
+		hour = (text/minutes).toFixed(2);
 
-	
+	console.log("here");
+    if(val!==$(this).val()){
+    	console.log($(this).val());
+    }
+    val = $(this).val();
 
-	// scaleSlider.onchange = function(e) {
-	//    text = e.target.value;
-	//    slideAdjust(text);
-
-	   
-	// };
-
-	function slideAdjust(text, unit) {
+    if(val=== "yes"){
+    	console.log("sometimes yes");
+    	time = hour;
+    	console.log(time + " hours");
+    	scaleOutput.innerText = (time + " hours");
+    }
+    else {
+    	console.log("this time no"); 
+    	console.log(time + " minutes");
+    	scaleOutput.innerText = (time + " minutes");
+    }
+    
+	});
+		
+	function slideAdjust(text) {
 		if (text < MINIMUM_SCALE) text = MINIMUM_SCALE;
 	   else if (text > MAXIMUM_SCALE) text = MAXIMUM_SCALE;
-
-	   //drawScaled();
 	   drawText(text);
-
-
 	}
 
 	$(powerButton).click(function (){
@@ -76,9 +84,6 @@
 	});
 
 	$(upButton).click(function(e){
-
-	   //console.log("text 1 " + text);	
-	   //console.log('here');
 	   text ++;
 	   console.log(text);
 	   drawText(text);
@@ -90,18 +95,13 @@
 
 	   slideAdjust(text);
 	});
-	
 
 	$(downButton).click(function(e){
-
 		if(text > 0) {
 			text --;
 			drawText(text);
 		}
-
 	})
-
-
 	
 	image.src = '';
 	image.onload = function(e) {

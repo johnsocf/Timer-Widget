@@ -6,7 +6,7 @@
 
 #scaleOutput {
 	position: absolute;
-	width: 70px;
+	width: 100px;
 	left:20%;
 	top:5%;
 	display: block;
@@ -31,11 +31,26 @@
 	top:10%;
 }
 #powerButton {
-	left:60%;
-	display: block;
+	top:20%;
 }
 #toggleSlider {
 	width: 37px;
 	position: absolute;
 	top: 30%;
 }
+#buttons {
+	width: 100px;
+	height:300px;
+	font:50%;
+	position: absolute;
+	left: 42%;
+}
+
+#time-units {
+	position: absolute;
+	top:43%;
+}
+
+/*.ui-slider-track {
+	margin: 79px 19px 0 19px;
+}*/
