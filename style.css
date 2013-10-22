@@ -1,0 +1,41 @@
+#controls {
+	height: 200px;
+	width: 500px;
+	position: relative;
+}
+
+#scaleOutput {
+	position: absolute;
+	width: 70px;
+	left:20%;
+	top:5%;
+	display: block;
+}
+
+#scaleSlider {
+	position: absolute;
+	width: 200px;
+	top:20%;
+}
+
+#upButton {
+	position: absolute;
+	left:45%;
+}
+.button {
+	position: absolute;
+	left:45%;
+	width: 66px;
+}
+#downButton {
+	top:10%;
+}
+#powerButton {
+	left:60%;
+	display: block;
+}
+#toggleSlider {
+	width: 37px;
+	position: absolute;
+	top: 30%;
+}

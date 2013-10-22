@@ -10,10 +10,17 @@
 	<div id='controls'>
         <output id='scaleOutput'>0</output>
         <input id='scaleSlider' type='range'
-               min='0' max='1000' step='1' value='1'/> 
+               min='0' max='1000' step='1' value='1'/>        
+        <input id='upButton' class="button" type='button' value='Increase'/>
+        <input id='downButton' class="button" type='button' value='Decrease'/>  
+        <input id='powerButton' class="button" type='button' value='Power'/>   
+        <input id='toggleSlider' type='range'
+               min='0' max='1' step='1' value='0'/>    
      </div>
 
 	<canvas id="canvas" height="500" width="500"></canvas>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="timer.js"></script>
 </body>
 </html>
