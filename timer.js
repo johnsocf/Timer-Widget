@@ -7,35 +7,34 @@
 		$upButton = $('#upButton'),
 		$downButton = $('#downButton'),
 		$powerButton = $('#powerButton'),
-		//$toggleSlider = $('#toggleSlider'),
 		scale = scaleSlider.value,
-		//unit = toggleSlider.value,
 		scale = 0,
 		MINIMUM_SCALE = 0,
-		text,
+		text = 0,
 		MAXIMUM_SCALE = 1000,
 		val = 'no',
 		minutes = 60,
+		currentTime,
+		refreshInterval,
 		hour = (text/minutes).toFixed(2);
 
-	function defineTimeUnit (unit) {
-		console.log(unit)
+	function defineTimeUnit (units) {
 	}
-
 
 	function drawText(value) { 
 		var time = text,
 			hour = (text/minutes).toFixed(2);
 		val = $('#flip-3').val();
-	    if(val=== "yes"){
+	    if($('#switch').prop('checked')) {
 	    	time = hour;
 	    	scaleOutput.innerText = (time + " hours");
+	    	currentTime = text;
 	    }
 	    else {
 	    	scaleOutput.innerText = (time + " minutes");
+	    	currentTime = text;
 	    }
 	    console.log(val);
-	   // scaleOutput.innerText = text;
 	}	
 
 	$(scaleSlider).change(function(e){
@@ -43,32 +42,29 @@
 	    slideAdjust(text);
 	});
 
-	$('#flip-3').change(function() {
-	self = $(this);
-	var val = 'no',
+	$('#switch').change(function(){
+		self = $(this);
+		var val = 'no',
 		time = text,
 		minutes = 60,
 		hour = (text/minutes).toFixed(2);
+		console.log("switch changed");
 
-	console.log("here");
-    if(val!==$(this).val()){
-    	console.log($(this).val());
-    }
-    val = $(this).val();
 
-    if(val=== "yes"){
-    	console.log("sometimes yes");
-    	time = hour;
-    	console.log(time + " hours");
-    	scaleOutput.innerText = (time + " hours");
-    }
-    else {
-    	console.log("this time no"); 
-    	console.log(time + " minutes");
-    	scaleOutput.innerText = (time + " minutes");
-    }
-    
+		if($('#switch').prop('checked')) {
+		    console.log("checked");
+		    time = hour;
+	    	console.log(time + " hours");
+	    	scaleOutput.innerText = (time + " hours");
+		} else {
+		    console.log(time + " minutes");
+    		scaleOutput.innerText = (time + " minutes");
+		}
+
+
 	});
+
+	
 		
 	function slideAdjust(text) {
 		if (text < MINIMUM_SCALE) text = MINIMUM_SCALE;
@@ -80,31 +76,56 @@
 		$('#scaleOutput').toggle();
 		text = 0;
 		drawText(text);
+		currentTime = 0;
+		moveSlider(currentTime);
 
 	});
 
-	$(upButton).click(function(e){
-	   text ++;
-	   console.log(text);
-	   drawText(text);
+	function powerOn () {
+		text = 0;
+		drawText(text);
+		currentTime = 0;
+		moveSlider(currentTime);
+	}
 
-	   scale = e.target.value;
-
-	   if (scale < MINIMUM_SCALE) scale = MINIMUM_SCALE;
-	   else if (scale > MAXIMUM_SCALE) scale = MAXIMUM_SCALE;
-
-	   slideAdjust(text);
+	$(upButton).mousedown(function(e){
+		refreshInterval = setInterval(increaseCount,75)
+	}).mouseup(function(e){
+		clearInterval(refreshInterval);
+		refreshInterval = 0;
 	});
 
-	$(downButton).click(function(e){
+	$(downButton).mousedown(function(e){
+		refreshInterval = setInterval(decreaseCount,75)
+	}).mouseup(function(e){
+		clearInterval(refreshInterval);
+		refreshInterval = 0;
+	});
+
+	function increaseCount () {
+		text ++;
+		drawText(text);
+		moveSlider(currentTime);
+		if (scale < MINIMUM_SCALE) scale = MINIMUM_SCALE;
+	    else if (scale > MAXIMUM_SCALE) scale = MAXIMUM_SCALE;
+	}
+
+	function decreaseCount () {
 		if(text > 0) {
 			text --;
 			drawText(text);
+			moveSlider(currentTime);
 		}
-	})
+	}
+
+	function moveSlider(text) {
+		$('#scaleSlider').val(currentTime);
+	}
+	
 	
 	image.src = '';
 	image.onload = function(e) {
-		drawText(scaleSlider.value);
+		drawText(text);
+		powerOn();
 	}
 })();

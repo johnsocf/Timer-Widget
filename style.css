@@ -50,6 +50,60 @@
 	position: absolute;
 	top:43%;
 }
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 200px;
+    height:20px;
+}
+
+.button
+{
+  border: 1px solid #777777;
+  background: #BADA55;
+  color: white;
+  font: bold 11px 'Trebuchet MS';
+  padding: 4px;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+/*input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #666;
+    opacity: 1;
+    width: 20px;
+    height: 26px;
+}*/
+
+
+input[type="range"]{
+  -webkit-appearance:none;
+  width:200px;
+  height:2px;
+  background: aqua;
+  background-position:center;
+  background-repeat:no-repeat;
+  position: absolute;
+  margin: auto;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:20px;
+  height:20px;
+  border-radius: 100%;
+  background: #434343;
+  position:relative;
+  border: 3px solid aquamarine;
+  z-index:3;
+  cursor: pointer;
+}
+
+*:focus {
+    outline: none;
+}
 
 /*.ui-slider-track {
 	margin: 79px 19px 0 19px;
