@@ -1,7 +1,27 @@
+@font-face {
+    font-family: 'ds-digitalnormal';
+    src: url('fonts/ds-digi-webfont.eot');
+    src: url('fonts/ds-digi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ds-digi-webfont.woff') format('woff'),
+         url('fonts/ds-digi-webfont.ttf') format('truetype'),
+         url('fonts/ds-digi-webfont.svg#ds-digitalnormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: 'ds-digitalnormal', Arial, sans-serif;
+  font-size: 36px;
+}
+
+p { font-family: 'ds-digitalnormal', Arial, sans-serif; }
+
 #controls {
 	height: 200px;
 	width: 500px;
 	position: relative;
+  background: #000;
+  color:#fff;
 }
 
 #scaleOutput {
@@ -10,12 +30,15 @@
 	left:20%;
 	top:5%;
 	display: block;
+  font-size: 240%;
+  text-align: right;
 }
 
 #scaleSlider {
 	position: absolute;
 	width: 200px;
-	top:20%;
+	top:32%;
+  left: 5%;
 }
 
 #upButton {
@@ -46,9 +69,11 @@
 	left: 42%;
 }
 
-#time-units {
-	position: absolute;
-	top:43%;
+#timeUnits {
+	font-size: 100%;
+  position: absolute;
+  left: 41%;
+  top: 13%;
 }
 input[type=range] {
     -webkit-appearance: none;

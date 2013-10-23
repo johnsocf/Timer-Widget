@@ -7,11 +7,12 @@
 		$upButton = $('#upButton'),
 		$downButton = $('#downButton'),
 		$powerButton = $('#powerButton'),
+		$timeUnits = $('#timeUnits'),
 		scale = scaleSlider.value,
 		scale = 0,
 		MINIMUM_SCALE = 0,
 		text = 0,
-		MAXIMUM_SCALE = 1000,
+		MAXIMUM_SCALE = 3000,
 		val = 'no',
 		minutes = 60,
 		currentTime,
@@ -27,11 +28,13 @@
 		val = $('#flip-3').val();
 	    if($('#switch').prop('checked')) {
 	    	time = hour;
-	    	scaleOutput.innerText = (time + " hours");
+	    	scaleOutput.innerText = (time);
+	    	timeUnits.innerText = ("hrs");
 	    	currentTime = text;
 	    }
 	    else {
-	    	scaleOutput.innerText = (time + " minutes");
+	    	scaleOutput.innerText = (time);
+	    	timeUnits.innerText = ("min");
 	    	currentTime = text;
 	    }
 	    console.log(val);
@@ -55,10 +58,12 @@
 		    console.log("checked");
 		    time = hour;
 	    	console.log(time + " hours");
-	    	scaleOutput.innerText = (time + " hours");
+	    	scaleOutput.innerText = (time);
+	    	timeUnits.innerText = ("hrs");
 		} else {
 		    console.log(time + " minutes");
-    		scaleOutput.innerText = (time + " minutes");
+    		scaleOutput.innerText = (time);
+    		timeUnits.innerText = ("min");
 		}
 
 
@@ -89,14 +94,14 @@
 	}
 
 	$(upButton).mousedown(function(e){
-		refreshInterval = setInterval(increaseCount,75)
+		refreshInterval = setInterval(increaseCount,30)
 	}).mouseup(function(e){
 		clearInterval(refreshInterval);
 		refreshInterval = 0;
 	});
 
 	$(downButton).mousedown(function(e){
-		refreshInterval = setInterval(decreaseCount,75)
+		refreshInterval = setInterval(decreaseCount,30)
 	}).mouseup(function(e){
 		clearInterval(refreshInterval);
 		refreshInterval = 0;
