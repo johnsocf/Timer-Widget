@@ -178,8 +178,6 @@
 			      'background',
 			      'linear-gradient(to right, #9AD3DF 0%, #9AD3DF ' + val/20 + '%, #000 ' + val/20 + '%, #000 ' + buf +10 + '%, #000 ' + buf + '%, #000 100%)'
 			    ); 
-	    	console.log("here2");
-	    	console.log(text);
 	    }	
 		else {$scaleSlider.css(
 			      'background',
