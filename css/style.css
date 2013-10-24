@@ -83,6 +83,14 @@ p { font-family: 'ds-digitalnormal', Arial, sans-serif; }
   left: 39%;
   background: #000);
 }
+.slider-units {
+  height:20px;
+  width:170px;
+  position: absolute;
+  top:80%;
+  left:39%;
+  background: url('../images/ruler.png') no-repeat;
+}
 #toggleSlider {
   width: 37px;
   position: absolute;

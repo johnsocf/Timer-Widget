@@ -33,31 +33,29 @@
 			<span class="minutes">MIN</span>
 			<span class="hours">HRS</span>
 		</div>
-		<!-- switch -->
 		<label class="switch">
 		    <input id="switch" type="checkbox" class="switch-input">
 		    <span class="switch-label" data-on="hrs" data-off="mins"></span>
 		    <span class="switch-handle"></span>
 		</label>
-		<!-- slider -->
 		<input id='scaleSlider' type='range' min='0' max='3000' step='1' value='1'/>  
+		<span class="slider-units"></span>
        <!--  <canvas id="ruler" height="20" width="178"></canvas> -->
      </div>
 </div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script src="js/timer.js"></script>
+	<script src="js/modernizr.custom.37435.js"></script>
+	<script src="js/js-webshim/minified/polyfiller.js"></script>
 	<script>
-		window.FlashCanvasOptions = {
-			disableContextMenu: true
-		};
-		$.webshims.polyfill();
+		window.FlashCanvasOptions = { disableContextMenu: true };
+		$.webshims.polyfill('canvas');
 		$.webshims.setOptions('canvas', {
 			type: 'flashpro'
 		});
 	</script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-	<script src="js/timer.js"></script>
-	<script src="js/modernizr.custom.96402.js"></script>
-	<script src="js/js-webshim/minified/polyfiller.js"></script>
 
 
 </body>
