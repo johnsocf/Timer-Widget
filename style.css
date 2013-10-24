@@ -264,14 +264,14 @@ input[type="range"]::-webkit-slider-thumb{
   width:14px;
   height:14px;
   border-radius: 100%;
-  background: #434343;
+  /*background: #434343;*/
   position:relative;
   /*border: 3px solid aquamarine;*/
-  background: #fff;
+  /*background: #fff;*/
   z-index:3;
   cursor: pointer;       
-  /*background-image: url("sliderknob.png");  */
-  background-position: -3px, -1px;
+  background-image: url("slider-knob.png");  
+  background-position: 0px, 0px;
 }
 
 input:focus {

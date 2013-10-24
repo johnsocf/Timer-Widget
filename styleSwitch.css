@@ -111,12 +111,14 @@
 
 .switch-handle {
   position: absolute;
-  top: 2px;
+  top: 3px;
   left: 2px;
   width: 12px;
   height: 12px;
-  background: white;
+  /*background: white;*/
   border-radius: 10px;
+  background-image: url("slider-knob.png"); 
+  background-position: -2px -2px;
   /*box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   background-image: -webkit-linear-gradient(top, white 40%, #f0f0f0);
   background-image: -moz-linear-gradient(top, white 40%, #f0f0f0);
