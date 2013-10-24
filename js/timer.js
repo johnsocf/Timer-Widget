@@ -85,8 +85,8 @@
 
 		if($('#switch').prop('checked')) {
 		    time = hour;
-	    	scaleOutput.innerText = (time);
-	    	timeUnits.innerText = ("hrs");
+	    	$scaleOutput.text(time);
+	    	$timeUnits.text("hrs");
 	    	if (time>20) {
 	    		$(scaleOutput).css("left","29%");
 	    	}
@@ -94,8 +94,8 @@
 	    		$(scaleOutput).css("left","35%");
 	    	}
 		} else {
-    		scaleOutput.innerText = (time);
-    		timeUnits.innerText = ("min");
+    		$scaleOutput.text(time);
+    		$timeUnits.text("min");
     		if (time < 2000) {
 	    		$(scaleOutput).css("left","38%");
 	    	}
@@ -124,8 +124,8 @@
 		
 	    if($('#switch').prop('checked')) {
 	    	time = hour;
-	    	scaleOutput.innerText = (time);
-	    	timeUnits.innerText = ("hrs");
+	    	$scaleOutput.text(time);
+	    	$timeUnits.text("hrs");
 	    	currentTime = text;
 	    	if (time>20) {
 	    		$(scaleOutput).css("left","29%");
@@ -137,8 +137,8 @@
 	    	}
 	    }
 	    else {
-	    	scaleOutput.innerText = (time);
-	    	timeUnits.innerText = ("min");
+	    	$scaleOutput.text(time);
+	    	$timeUnits.text("min");
 	    	currentTime = text;
 	    	if (time < 2000) {
 	    		$(scaleOutput).css("left","38%");
