@@ -157,4 +157,78 @@
 		drawText(text);
 		powerOn();
 	}
+
+
+
+	var font_height = 15,
+	margin = 35,
+	loop,
+	hand_truncation = canvas.width/25,
+	hour_hand_truncation = canvas.width/10,
+	numeral_spacing = 20,
+	radius = canvas.width/2 - margin,
+	hand_radius = radius + numeral_spacing;
+
+function drawCircle() {
+	context.beginPath();
+	context.arc(canvas.width/2, canvas.height/2, radius, 0, Math.PI*2, true);
+	context.lineWidth = "5";
+	context.stroke();
+}	
+
+
+
+
+
+function drawCenter() {
+	context.beginPath();
+	context.arc(canvas.Width/2, canvas.height/2, 5, 0, Math.PI*2, true);
+	context.fill();
+}
+
+function drawHand(loc, isHour) {
+	var angle = (Math.PI*2) * (loc/60) - Math.PI/2,
+		handRadius = isHour ? radius - hand_truncation - hour_hand_truncation : radius - hand_truncation;
+		context.moveTo(canvas.width/2, canvas.height/2);
+		context.lineTo(canvas.width/2 + Math.cos(angle)*handRadius,
+						canvas.height/2 + Math.sin(angle)*handRadius);
+		context.strokeStyle = "#fff";
+		context.lineWidth = "2";
+		context.stroke();
+}
+
+function drawHands() {
+	var numberSeconds = text,
+	numberHours = text / 60,
+	extraMinutes = text % 60;
+	console.log("drawing hands");
+
+	hour = hour > 12 ? hour - 12 : hour;
+	drawHand(numberHours, true, 0.5);
+	drawHand(extraMinutes, false, 0.5);
+	drawHand(numberSeconds, false, 0.2);
+	drawHand((numberSeconds/60), false, 0.2);
+}
+
+function drawClock() {
+	context.clearRect(0,0,canvas.width, canvas.height);
+	drawCircle();
+	drawCenter();
+	drawHands();
+}
+
+context.font = font_height + 'px Arial';
+loop = setInterval(drawClock, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
 })();

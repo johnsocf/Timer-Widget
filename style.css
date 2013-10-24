@@ -14,6 +14,12 @@ body {
   font-size: 36px;
 }
 
+canvas {
+  position: absolute;
+  top:-26%;
+  left:-10%
+}
+
 p { font-family: 'ds-digitalnormal', Arial, sans-serif; }
 
 #container {
@@ -264,12 +270,23 @@ input[type="range"]::-webkit-slider-thumb{
   background: #fff;
   z-index:3;
   cursor: pointer;       
-  background-image: url("sliderknob.png");  
+  /*background-image: url("sliderknob.png");  */
   background-position: -3px, -1px;
 }
 
 input:focus {
   outline: none;
+}
+
+#circle-glow {
+  border-radius: 100%;
+  border: 1px solid #fff;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 28.1%;
+  left: 8.3%;
+  box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 20px #97FFFF;
 }
 
 
