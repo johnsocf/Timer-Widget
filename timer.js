@@ -13,31 +13,42 @@
 		MINIMUM_SCALE = 0,
 		text = 0,
 		MAXIMUM_SCALE = 3000,
-		val = 'no',
 		minutes = 60,
 		currentTime,
 		refreshInterval,
 		hour = (text/minutes).toFixed(2);
 
-	function defineTimeUnit (units) {
-	}
+	
 
 	function drawText(value) { 
 		var time = text,
 			hour = (text/minutes).toFixed(2);
-		val = $('#flip-3').val();
+		
 	    if($('#switch').prop('checked')) {
 	    	time = hour;
 	    	scaleOutput.innerText = (time);
 	    	timeUnits.innerText = ("hrs");
 	    	currentTime = text;
+	    	if (time>20) {
+	    		$(scaleOutput).css("left","29%");
+	    		console.log(time);
+	    	}
+	    	else {
+	    		$(scaleOutput).css("left","35%");
+	    		console.log(time);
+	    	}
 	    }
 	    else {
 	    	scaleOutput.innerText = (time);
 	    	timeUnits.innerText = ("min");
 	    	currentTime = text;
+	    	if (time < 2000) {
+	    		$(scaleOutput).css("left","38%");
+	    	}
+	    	else {
+	    		$(scaleOutput).css("left","33%");
+	    	}
 	    }
-	    console.log(val);
 	}	
 
 	$(scaleSlider).change(function(e){
@@ -47,23 +58,32 @@
 
 	$('#switch').change(function(){
 		self = $(this);
-		var val = 'no',
 		time = text,
 		minutes = 60,
 		hour = (text/minutes).toFixed(2);
-		console.log("switch changed");
 
 
 		if($('#switch').prop('checked')) {
-		    console.log("checked");
 		    time = hour;
-	    	console.log(time + " hours");
 	    	scaleOutput.innerText = (time);
 	    	timeUnits.innerText = ("hrs");
+	    	if (time>20) {
+	    		$(scaleOutput).css("left","29%");
+	    		console.log(time);
+	    	}
+	    	else {
+	    		$(scaleOutput).css("left","35%");
+	    		console.log(time);
+	    	}
 		} else {
-		    console.log(time + " minutes");
     		scaleOutput.innerText = (time);
     		timeUnits.innerText = ("min");
+    		if (time < 2000) {
+	    		$(scaleOutput).css("left","38%");
+	    	}
+	    	else {
+	    		$(scaleOutput).css("left","33%");
+	    	}
 		}
 
 
@@ -78,7 +98,11 @@
 	}
 
 	$(powerButton).click(function (){
-		$('#scaleOutput').toggle();
+		$('#scaleOutput').toggle(function(){});
+		$('#power-off-display').toggle();
+		$('#timeUnits').toggle();
+		$('#on-button').toggleClass("blue-button");
+		$('#on-button').toggleClass("white-button");
 		text = 0;
 		drawText(text);
 		currentTime = 0;
