@@ -18,7 +18,107 @@
 		refreshInterval,
 		hour = (text/minutes).toFixed(2);
 
+
+
+	document.onload = function(e) {
+		drawText(text);
+		powerOn();
+	}
 	
+	$(scaleSlider).change(function(e){
+		text = e.target.value;
+	    slideAdjust(text);
+	    var val = $(this).val();
+	    var buf = ((100 - val)/ 15) + parseInt(val);
+	    $(this).css(
+	      'background',
+	      'linear-gradient(to right, #9AD3DF 0%, #9AD3DF ' + val/30 + '%, #000 ' + val/29 + '%, #000 ' + buf + '%, #000 ' + buf + '%, #000 100%)'
+	    );
+	});
+
+	$scaleSlider.change(function() {
+	    var val = $(this).val();
+	    var buf = ((100 - val)/ 15) + parseInt(val);
+	    $(this).css(
+	      'background',
+	      'linear-gradient(to right, #9AD3DF 0%, #9AD3DF ' + val/30 + '%, #000 ' + val/29 + '%, #000 ' + buf + '%, #000 ' + buf + '%, #000 100%)'
+	    );
+  	});
+
+
+	$(upButton).mousedown(function(e){
+		refreshInterval = setInterval(increaseCount,30)
+	}).mouseup(function(e){
+		clearInterval(refreshInterval);
+		refreshInterval = 0;
+	});
+
+	$(downButton).mousedown(function(e){
+		refreshInterval = setInterval(decreaseCount,30)
+	}).mouseup(function(e){
+		clearInterval(refreshInterval);
+		refreshInterval = 0;
+	});
+
+	$(powerButton).click(function (){
+		$('#scaleOutput').toggle(function(){});
+		$('#power-off-display').toggle();
+		$('#timeUnits').toggle();
+		$('#on-button').toggleClass("blue-button");
+		$('#on-button').toggleClass("white-button");
+		$('#scaleSlider').css(
+	      'background',
+      'linear-gradient(to right, #000 0%, #000 ' + 0/28 + '%, #000 ' + 0/28 + '%, #000 ' + 0 + '%, #000 ' + 0 + '%, #000 100%)'
+    );
+		text = 0;
+		drawText(text);
+		currentTime = 0;
+		moveSlider(currentTime);
+	});
+
+	$('#switch').change(function(){
+		self = $(this);
+		time = text,
+		minutes = 60,
+		hour = (text/minutes).toFixed(2);
+
+
+		if($('#switch').prop('checked')) {
+		    time = hour;
+	    	scaleOutput.innerText = (time);
+	    	timeUnits.innerText = ("hrs");
+	    	if (time>20) {
+	    		$(scaleOutput).css("left","29%");
+	    		console.log(time);
+	    	}
+	    	else {
+	    		$(scaleOutput).css("left","35%");
+	    		console.log(time);
+	    	}
+		} else {
+    		scaleOutput.innerText = (time);
+    		timeUnits.innerText = ("min");
+    		if (time < 2000) {
+	    		$(scaleOutput).css("left","38%");
+	    	}
+	    	else {
+	    		$(scaleOutput).css("left","33%");
+	    	}
+		}
+	});
+
+	function slideAdjust(text) {
+		if (text < MINIMUM_SCALE) text = MINIMUM_SCALE;
+	   else if (text > MAXIMUM_SCALE) text = MAXIMUM_SCALE;
+	   drawText(text);
+	}
+
+	function powerOn () {
+		text = 0;
+		drawText(text);
+		currentTime = 0;
+		moveSlider(currentTime);
+	}
 
 	function drawText(value) { 
 		var time = text,
@@ -51,85 +151,6 @@
 	    }
 	}	
 
-	$(scaleSlider).change(function(e){
-		text = e.target.value;
-	    slideAdjust(text);
-	});
-
-	$('#switch').change(function(){
-		self = $(this);
-		time = text,
-		minutes = 60,
-		hour = (text/minutes).toFixed(2);
-
-
-		if($('#switch').prop('checked')) {
-		    time = hour;
-	    	scaleOutput.innerText = (time);
-	    	timeUnits.innerText = ("hrs");
-	    	if (time>20) {
-	    		$(scaleOutput).css("left","29%");
-	    		console.log(time);
-	    	}
-	    	else {
-	    		$(scaleOutput).css("left","35%");
-	    		console.log(time);
-	    	}
-		} else {
-    		scaleOutput.innerText = (time);
-    		timeUnits.innerText = ("min");
-    		if (time < 2000) {
-	    		$(scaleOutput).css("left","38%");
-	    	}
-	    	else {
-	    		$(scaleOutput).css("left","33%");
-	    	}
-		}
-
-
-	});
-
-	
-		
-	function slideAdjust(text) {
-		if (text < MINIMUM_SCALE) text = MINIMUM_SCALE;
-	   else if (text > MAXIMUM_SCALE) text = MAXIMUM_SCALE;
-	   drawText(text);
-	}
-
-	$(powerButton).click(function (){
-		$('#scaleOutput').toggle(function(){});
-		$('#power-off-display').toggle();
-		$('#timeUnits').toggle();
-		$('#on-button').toggleClass("blue-button");
-		$('#on-button').toggleClass("white-button");
-		text = 0;
-		drawText(text);
-		currentTime = 0;
-		moveSlider(currentTime);
-
-	});
-
-	function powerOn () {
-		text = 0;
-		drawText(text);
-		currentTime = 0;
-		moveSlider(currentTime);
-	}
-
-	$(upButton).mousedown(function(e){
-		refreshInterval = setInterval(increaseCount,30)
-	}).mouseup(function(e){
-		clearInterval(refreshInterval);
-		refreshInterval = 0;
-	});
-
-	$(downButton).mousedown(function(e){
-		refreshInterval = setInterval(decreaseCount,30)
-	}).mouseup(function(e){
-		clearInterval(refreshInterval);
-		refreshInterval = 0;
-	});
 
 	function increaseCount () {
 		text ++;
@@ -151,12 +172,8 @@
 		$('#scaleSlider').val(currentTime);
 	}
 	
+
 	
-	image.src = '';
-	image.onload = function(e) {
-		drawText(text);
-		powerOn();
-	}
 
 
 
@@ -224,11 +241,50 @@ loop = setInterval(drawClock, 1000);
 
 
 
+// ruler in canvas
 
+var ruler = document.getElementById("ruler"),
+	rulerContext = ruler.getContext("2d"),
+	axis_margin = 0,
+	axis_origin = {x: axis_margin, y: ruler.height - axis_margin},
+	axis_right = ruler.width,
+	horizontal_tick_spacing = 3,
+	axis_width = axis_right - axis_origin.x +100,
+	num_horizontal_ticks = axis_width/ horizontal_tick_spacing,
+	tick_width = 5,
+	ticks_linewidth = 0.09,
+	ticks_color = '#9A9A9A';
 
+	function drawAxes() {
+		rulerContext.save();
+		rulerContext.lineWidth = 0.5;
+		rulerContext.lineWidth = ticks_linewidth;
+		rulerContext.strokeStyle = ticks_color;
+		drawHorizontalAxisTicks();
+		rulerContext.restore();
+	}
 
+	function drawHorizontalAxisTicks() {
+		var deltaY;
 
+		for (var i = 1; i < num_horizontal_ticks; ++i) {
+			
+			rulerContext.beginPath;
+			var yOrigin = axis_origin.y,
+				tickOrigin = axis_origin.y - 13,
+				ytickOrigin = axis_origin.y - 15,
+				xOrigin = axis_origin.x - 4;
 
+			if (i % 5 === 0) deltaY = tick_width, yOrigin = tickOrigin;
+			else 			 deltaY = tick_width/2, yOrigin = ytickOrigin;
 
+			rulerContext.moveTo(xOrigin + i * horizontal_tick_spacing, 
+							yOrigin - deltaY);
+			rulerContext.lineTo(xOrigin + i * horizontal_tick_spacing, 
+							yOrigin + deltaY);
+			rulerContext.stroke();
+		}
+	}
+	drawAxes();
 
 })();
