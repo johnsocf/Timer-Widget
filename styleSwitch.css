@@ -19,7 +19,7 @@
   display: inline-block;
   vertical-align: top;
   top: 70%;
-  left: 15%;
+  left: 15.5%;
   width: 22px;
   height: 10px;
   padding: 3px;
@@ -34,11 +34,15 @@
   background-image: linear-gradient(to bottom, #eeeeee, white 25px);*/
 }
 #switch-parameters {
-  width:73px;
+  width:74px;
   display: block;
   position: absolute;
-  top:71%;
-  font-size: 80%;
+  top:73%;
+  font-size: 50%;
+  text-shadow: none;
+  color: #9A9A9A;
+  font-family: “Myriad Pro”, Arial, Helvetica, Tahoma, sans-serif;
+  text-transform: capitalize;
 }
 .minutes{
   float: left;
